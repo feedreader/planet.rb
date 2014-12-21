@@ -17,7 +17,7 @@ module JekyllPlanet
   def self.run( args )
     Tool.new.run( args )
   end
-  
+
   def self.main
     self.run( ARGV )
   end

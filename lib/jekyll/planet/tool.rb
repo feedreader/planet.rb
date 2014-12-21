@@ -38,7 +38,10 @@ class Tool
 
     FileUtils.mkdir_p( posts_root )  ## make sure path exists
 
-    fn = "#{posts_root}/#{item.published.strftime('%Y-%m-%d')}_#{title_to_key(item.title)}.html"
+    ## Note:
+    ## Jekyll pattern for blogs must follow
+    ##  2014-12-21-  e.g. must include trailing dash (-)
+    fn = "#{posts_root}/#{item.published.strftime('%Y-%m-%d')}-#{title_to_key(item.title)}.html"
 
     frontmatter =<<EOS
 ---

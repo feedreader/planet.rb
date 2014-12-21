@@ -55,15 +55,26 @@ See the [Planet Pluto docs for more »](http://feedreader.github.io).
 Use Jekyll Planet Ruby script to generate the blog posts for jekyll. Example:
 
 ~~~
-$ ruby -r 'jekyll/planet' -e 'JekyllPlanet.run'
+$ ruby -r 'jekyll/planet' -e 'JekyllPlanet.main'
 ~~~
-
 
 This will
 
 1) fetch the latest entries from the local database, that is, `planet.db` and
 
 2) generate a blog story for every entry in `_posts/`
+
+~~~
+jekyll-planet/0.2.1 on Ruby 2.1.4 (2014-10-27) [i686-linux]
+db settings:
+{:adapter=>"sqlite3", :database=>"./planet.db"}
+[1] [ANN] Rails 4.2.0.rc3 has been released!
+[2] I made a Tic-tac-toe for the Terminal in Ruby
+[3] slideshow (S9) RubyGem Update - Adds npm Template Pack Support - $ npm install slideshow-impress.js
+[4] Picks / What the vienna.rb Team Thinks Is Worth Sharing This Week
+[5] Rack/Rails middleware that will add rel="nofollow" to all your links
+...
+~~~
 
 For example
 
@@ -77,7 +88,7 @@ to the <a href="http://edgeguides.rubyonrails.org/4_2_release_notes.html">releas
 ...
 ~~~
 
-becomes `_posts/2014-12-13_ann_rails_420rc3_has_been_released.html`:
+becomes `_posts/2014-12-13-ann_rails_420rc3_has_been_released.html`:
 
 ~~~
 ---
@@ -112,6 +123,14 @@ That's it.
 
 `planet.rb` by Pablo Astigarraga [(Site)](https://github.com/pote/planet.rb) - used with jekyll/octopress site generator
 
+
+
+
+## Install
+
+Just install the gem:
+
+    $ gem install jekyll-planet
 
 
 ## License
