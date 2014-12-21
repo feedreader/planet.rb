@@ -43,7 +43,7 @@ $ pluto update planet.ini
 
 This will
 
-1) fetch all feeds listed in planet.ini and
+1) fetch all feeds listed in `planet.ini` and
 
 2) store all entries in a local database, that is, `planet.db` in your working folder.
 
@@ -63,7 +63,7 @@ This will
 
 1) fetch the latest entries from the local database, that is, `planet.db` and
 
-2) generate a blog story in `_posts/` for every entry
+2) generate a blog story for every entry in `_posts/`
 
 For example
 
