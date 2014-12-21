@@ -18,3 +18,8 @@ _yardoc
 doc/
 
 
+#############
+# exclude *.dbs for testing
+
+planet.db
+

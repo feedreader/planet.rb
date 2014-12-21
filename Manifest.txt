@@ -3,4 +3,5 @@ Manifest.txt
 README.md
 Rakefile
 lib/jekyll/planet.rb
+lib/jekyll/planet/tool.rb
 lib/jekyll/planet/version.rb

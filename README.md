@@ -10,17 +10,113 @@
 
 ## Usage
 
+### Step 1: Planet Pluto Configuration
+
+Use the Planet Pluto machinery to setup your planet and feed list.
+Example `planet.ini`:
+
+~~~
+title = Planet Ruby
+
+[rubyflow]
+  title  = Ruby Flow
+  link   = http://rubyflow.com
+  feed   = http://feeds.feedburner.com/Rubyflow?format=xml
+
+[rubyonrails]
+  title = Ruby on Rails Blog
+  link  = http://weblog.rubyonrails.org
+  feed  = http://weblog.rubyonrails.org/feed/atom.xml
+
+[viennarb]
+  title = vienna.rb Blog
+  link  = http://vienna-rb.at
+  feed  = http://vienna-rb.at/atom.xm
+~~~
+
+Use the pluto command line tool
+and pass in the planet configuration. Example:
+
+~~~
+$ pluto update planet.ini
+~~~
+
+This will
+
+1) fetch all feeds listed in planet.ini and
+
+2) store all entries in a local database, that is, `planet.db` in your working folder.
+
+See the [Planet Pluto docs for more »](http://feedreader.github.io).
+
+
+### Step 2: Generate Planet Posts for Jekyll
+
+Use Jekyll Planet Ruby script to generate the blog posts for jekyll. Example:
+
+~~~
+$ ruby -r 'jekyll/planet' -e 'JekyllPlanet.run'
+~~~
+
+
+This will
+
+1) fetch the latest entries from the local database, that is, `planet.db` and
+
+2) generate a blog story in `_posts/` for every entry
+
+For example
+
+~~~
+<p>Happy Friday everyone!</p>
+
+<p>The Rails team has just released <a href="http://rubygems.org/gems/rails/versions/4.2.0.rc3">
+the third Release Candidate of Rails 4.2.0</a>
+today. For an overview of all the major changes in the 4.2 series, please refer
+to the <a href="http://edgeguides.rubyonrails.org/4_2_release_notes.html">release notes</a>.</p>
+...
+~~~
+
+becomes `_posts/2014-12-13_ann_rails_420rc3_has_been_released.html`:
+
+~~~
+---
+title:      "[ANN] Rails 4.2.0.rc3 has been released!"
+created_at: 2014-12-13 03:00:00 UTC
+autor:      Ruby on Rails Blog
+layout:     post
+---
+<p>Happy Friday everyone!</p>
+
+<p>The Rails team has just released <a href="http://rubygems.org/gems/rails/versions/4.2.0.rc3">
+the third Release Candidate of Rails 4.2.0</a>
+today. For an overview of all the major changes in the 4.2 series, please refer
+to the <a href="http://edgeguides.rubyonrails.org/4_2_release_notes.html">release notes</a>.</p>
+...
+~~~
+
+
+### Step 3: Use Jekyll to Generate Your Site
+
+Nothing new. Use Jekyll as usual to build your site. Example:
+
+~~~
+$ jekyll build
+~~~
+
+That's it.
+
 
 
 ## Alternatives
 
-`planet.rb` by Pablo Astigarraga [(Site)](https://github.com/pote/planet.rb)  - used with jekyll/octopress site generator
+`planet.rb` by Pablo Astigarraga [(Site)](https://github.com/pote/planet.rb) - used with jekyll/octopress site generator
 
 
 
 ## License
 
-The `pluto-merge` scripts are dedicated to the public domain.
+The `jekyll-planet` scripts are dedicated to the public domain.
 Use it as you please with no restrictions whatsoever.
 
 ## Questions? Comments?
