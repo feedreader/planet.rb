@@ -45,10 +45,11 @@ class Tool
 
     frontmatter =<<EOS
 ---
-title:      "#{item.title}"
+title:      "#{item.title.gsub("\"","\\\"")}"
 created_at: #{item.published}
 author:     #{item.feed.title}
 layout:     post
+original_link: "#{item.url unless item.url.empty?}"
 ---
 EOS
 
