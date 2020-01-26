@@ -71,7 +71,7 @@ pluto/1.3.2 on Ruby 2.3.3
 [info] ** NEW | Ruby 2.7.0-preview2 Released
 [info] ** NEW | 2020 Fukuoka Ruby Award Competition - Entries to be judged by Matz
 [info] ** NEW | Ruby 2.4.9 Released
-[info] ** NEW | CVE-2019-16201: Regular Expression Denial of Service vulnerability of WEBrick's Digest access authentication
+[info] ** NEW | CVE-2019-16201: Regular Expression Denial of Service vulnerability of WEBrick's Digest...
 [info] ** NEW | Ruby 2.6.5 Released
 [info] OK - fetching feed 'rubyconf' - HTTP status 200 OK
 [info] Before parsing feed >rubyconf<...
