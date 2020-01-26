@@ -1,11 +1,10 @@
-# jekyll-planet gem - add articles, blogs to your site via web feeds (and planet pluto)
+# planet.rb quick starter script - add articles, blogs to your static (jekyll & friends) website via feeds (and planet pluto)
 
 
-* home  :: [github.com/feedreader/jekyll-planet](https://github.com/feedreader/jekyll-planet)
-* bugs  :: [github.com/feedreader/jekyll-planet/issues](https://github.com/feedreader/jekyll-planet/issues)
-* gem   :: [rubygems.org/gems/jekyll-planet](https://rubygems.org/gems/jekyll-planet)
-* rdoc  :: [rubydoc.info/gems/jekyll-planet](http://rubydoc.info/gems/jekyll-planet)
+* home  :: [github.com/feedreader/planet.rb](https://github.com/feedreader/planet.rb)
+* bugs  :: [github.com/feedreader/planet.rb/issues](https://github.com/feedreader/planet.rb/issues)
 * forum :: [groups.google.com/group/wwwmake](http://groups.google.com/group/wwwmake)
+
 
 
 ## Usage
@@ -15,31 +14,37 @@
 Use the Planet Pluto machinery to setup your planet and feed list.
 Example `planet.ini`:
 
-~~~
+```
 title = Planet Ruby
 
-[rubyflow]
-  title  = Ruby Flow
-  link   = http://rubyflow.com
-  feed   = http://feeds.feedburner.com/Rubyflow?format=xml
+[rubylang]
+  title = Ruby Lang News
+  link  = http://www.ruby-lang.org/en/news
+  feed  = http://www.ruby-lang.org/en/feeds/news.rss
+
+[rubyconf]
+  title = Ruby Conferences 'n' Camps in 2020 - What's Upcoming?
+  link  = http://planetruby.github.io/calendar/2020
+  feed  = http://planetruby.github.io/calendar/feed.xml
 
 [rubyonrails]
   title = Ruby on Rails Blog
   link  = http://weblog.rubyonrails.org
   feed  = http://weblog.rubyonrails.org/feed/atom.xml
 
-[viennarb]
-  title = vienna.rb Blog
-  link  = http://vienna-rb.at
-  feed  = http://vienna-rb.at/atom.xm
-~~~
+[jekyll]
+  title = Jekyll News
+  link  = https://jekyllrb.com/news
+  feed  = https://jekyllrb.com/feed.xml
+```
 
 Use the pluto command line tool
 and pass in the planet configuration. Example:
 
-~~~
+```
 $ pluto update planet.ini
-~~~
+```
+
 
 This will
 
@@ -47,16 +52,73 @@ This will
 
 2) store all entries in a local database, that is, `planet.db` in your working folder.
 
+Resulting in:
+
+```
+pluto/1.3.2 on Ruby 2.3.3
+[info] db settings:
+[info] {:adapter=>"sqlite3", :database=>"./planet.db"}
+[info] Updating feed subscription >rubylang< - >http://www.ruby-lang.org/en/feeds/news.rss<...
+[info] Updating feed subscription >rubyconf< - >http://planetruby.github.io/calendar/feed.xml<...
+[info] Updating feed subscription >rubyonrails< - >http://weblog.rubyonrails.org/feed/atom.xml<...
+[info] Updating feed subscription >jekyll< - >https://jekyllrb.com/feed.xml<...
+[info] OK - fetching feed 'rubylang' - HTTP status 200 OK
+[info] ** NEW | Ruby 2.7.0 Released
+[info] ** NEW | Ruby 2.7.0-rc2 Released
+[info] ** NEW | Ruby 2.7.0-rc1 Released
+[info] ** NEW | Separation of positional and keyword arguments in Ruby 3.0
+[info] ** NEW | Ruby 2.7.0-preview3 Released
+[info] ** NEW | Ruby 2.7.0-preview2 Released
+[info] ** NEW | 2020 Fukuoka Ruby Award Competition - Entries to be judged by Matz
+[info] ** NEW | Ruby 2.4.9 Released
+[info] ** NEW | CVE-2019-16201: Regular Expression Denial of Service vulnerability of WEBrick's Digest access authentication
+[info] ** NEW | Ruby 2.6.5 Released
+[info] OK - fetching feed 'rubyconf' - HTTP status 200 OK
+[info] Before parsing feed >rubyconf<...
+[info] ** NEW | Rails Camp West @ Diablo Lake, Washington, United States - Ruby Conferences 'n' Camps Update
+[info] ** NEW | RubyConf Belarus (BY) @ Minsk, Belarus - Ruby Conferences 'n' Camps Update
+[info] ** NEW | Birmingham on Rails @ Birmingham, Alabama, United States - Ruby Conferences 'n' Camps Update
+[info] ** NEW | RubyConf Australia @ Melbourne, Victoria, Australia - Ruby Conferences 'n' Camps Update
+[info] ** NEW | ParisRB Conf @ Paris, France - Ruby Conferences 'n' Camps Update
+[info] ** NEW | Rubyfuza @ Cape Town, South Africa - Ruby Conferences 'n' Camps Update
+[info] OK - fetching feed 'rubyonrails' - HTTP status 200 OK
+[info] ** NEW | This week in Rails - Rack 2.1 released, disallowed deprecations, and more!
+[info] ** NEW | This week in Rails - Deprecations, bugfixes and improvements!
+[info] ** NEW | This week in Rails - The 2019 edition
+[info] ** NEW | Ruby 2.7.0, Rails 6.0.2.1 and more
+[info] ** NEW | Rails 5.2.4.1 has been released!
+[info] ** NEW | Rails 6.0.2.1 has been released!
+[info] ** NEW | Rails 6.0.2 has been released!
+[info] ** NEW | Rails 6.0.2.rc2 has been released!
+[info] ** NEW | Rails 6.0.2.rc1, 5.2.4, and something different…
+[info] ** NEW | Rails 5.2.4 has been released!
+[info] OK - fetching feed 'jekyll' - HTTP status 200 OK
+[info] ** NEW | Jekyll 4.0.0 Released
+[info] ** NEW | Jekyll 4.0.0.pre.beta1 Released
+[info] ** NEW | Jekyll 3.8.6 Released
+[info] ** NEW | Jekyll 4.0.0.pre.alpha1 Released
+[info] ** NEW | Jekyll 3.8.5 Released
+[info] ** NEW | Security Fixes for series 3.6, 3.7 and 3.8
+[info] ** NEW | Sponsoring Jekyll’s development
+[info] ** NEW | Jekyll 3.8.3 Released
+[info] ** NEW | Jekyll 3.8.2 Released
+[info] ** NEW | Jekyll 3.8.1 Released
+Done.
+```
+
 See the [Planet Pluto docs for more »](http://feedreader.github.io).
 
 
-### Step 2: Generate Planet Posts for Jekyll
 
-Use Jekyll Planet Ruby script to generate the blog posts for jekyll. Example:
 
-~~~
-$ ruby -r 'jekyll/planet' -e 'JekyllPlanet.main'
-~~~
+### Step 2: Generate Planet Posts for Your Static (Jekyll & Friends) Website 
+
+Use planet.rb script to generate the blog posts for your static (jekyll & friends) website. Example:
+
+```
+$ ruby ./planet.rb
+```
+
 
 This will
 
@@ -64,78 +126,102 @@ This will
 
 2) generate a blog story for every entry in `_posts/`
 
-~~~
-jekyll-planet/0.2.1 on Ruby 2.1.4 (2014-10-27) [i686-linux]
+```
+planet.rb/1.0.0 on Ruby 2.3.3
 db settings:
 {:adapter=>"sqlite3", :database=>"./planet.db"}
-[1] [ANN] Rails 4.2.0.rc3 has been released!
-[2] I made a Tic-tac-toe for the Terminal in Ruby
-[3] slideshow (S9) RubyGem Update - Adds npm Template Pack Support - $ npm install slideshow-impress.js
-[4] Picks / What the vienna.rb Team Thinks Is Worth Sharing This Week
-[5] Rack/Rails middleware that will add rel="nofollow" to all your links
+[info] db settings:
+[info] {:adapter=>"sqlite3", :database=>"./planet.db"}
+[1] This week in Rails - Rack 2.1 released, disallowed deprecations, and more!
+[2] Rails Camp West @ Diablo Lake, Washington, United States - Ruby Conferences 'n' Camps Update
+[3] RubyConf Belarus (BY) @ Minsk, Belarus - Ruby Conferences 'n' Camps Update
+[4] This week in Rails - Deprecations, bugfixes and improvements!
+[5] This week in Rails - The 2019 edition
+[6] Birmingham on Rails @ Birmingham, Alabama, United States - Ruby Conferences 'n' Camps Update
+[7] Ruby 2.7.0, Rails 6.0.2.1 and more
+[8] Ruby 2.7.0 Released
+[9] Ruby 2.7.0-rc2 Released
+[10] Rails 5.2.4.1 has been released!
 ...
-~~~
+```
 
 For example
+the feed entry "Ruby 2.7.0 Released":
 
-~~~
-<p>Happy Friday everyone!</p>
+```
+<p>We are pleased to announce the release of Ruby 2.7.0.</p>
 
-<p>The Rails team has just released <a href="http://rubygems.org/gems/rails/versions/4.2.0.rc3">
-the third Release Candidate of Rails 4.2.0</a>
-today. For an overview of all the major changes in the 4.2 series, please refer
-to the <a href="http://edgeguides.rubyonrails.org/4_2_release_notes.html">release notes</a>.</p>
+<p>It introduces a number of new features and performance improvements,
+most notably:</p>
+
+<ul>
+  <li>Pattern Matching</li>
+  <li>REPL improvement</li>
+  <li>Compaction GC</li>
+  <li>Separation of positional and keyword arguments</li>
+</ul>
 ...
-~~~
+```
 
-becomes `_posts/2014-12-13-ann_rails_420rc3_has_been_released.html`:
 
-~~~
+becomes `_posts/2019-12-25-ruby_270_released.html`:
+
+```
 ---
-title:      "[ANN] Rails 4.2.0.rc3 has been released!"
-created_at: 2014-12-13 03:00:00 UTC
-autor:      Ruby on Rails Blog
+title:      "Ruby 2.7.0 Released"
+created_at: 2019-12-25 00:00:00 UTC
+author:     Ruby Lang News
 layout:     post
+original_link: "https://www.ruby-lang.org/en/news/2019/12/25/ruby-2-7-0-released/"
 ---
-<p>Happy Friday everyone!</p>
+<p>We are pleased to announce the release of Ruby 2.7.0.</p>
 
-<p>The Rails team has just released <a href="http://rubygems.org/gems/rails/versions/4.2.0.rc3">
-the third Release Candidate of Rails 4.2.0</a>
-today. For an overview of all the major changes in the 4.2 series, please refer
-to the <a href="http://edgeguides.rubyonrails.org/4_2_release_notes.html">release notes</a>.</p>
+<p>It introduces a number of new features and performance improvements,
+most notably:</p>
+
+<ul>
+  <li>Pattern Matching</li>
+  <li>REPL improvement</li>
+  <li>Compaction GC</li>
+  <li>Separation of positional and keyword arguments</li>
+</ul>
 ...
-~~~
+```
 
 
-### Step 3: Use Jekyll to Generate Your Site
+### Step 3: Use Your Static (Jekyll & Friends) Website Compiler to Build Your Website
 
-Nothing new. Use Jekyll as usual to build your site. Example:
+Nothing new. Use your static (jekyll & friends) website compiler 
+as usual to build your website. Example:
 
-~~~
+```
 $ jekyll build
-~~~
+```
 
 That's it.
 
 
 
+
+
+
+## Examples in the Real World
+
+- [Planet OpenSuse](https://github.com/openSUSE/planet-o-o) - A simple planet, made for openSUSE - Linux OS
+
+Add Your Setup Here!
+
+
+
 ## Alternatives
 
-`planet.rb` by Pablo Astigarraga [(Site)](https://github.com/pote/planet.rb) - used with jekyll/octopress site generator
+`planet.rb` by Pablo Astigarraga [(Site)](https://github.com/pote/planet.rb) - used with jekyll/octopress website builder
 
-
-
-
-## Install
-
-Just install the gem:
-
-    $ gem install jekyll-planet
 
 
 ## License
 
-The `jekyll-planet` scripts are dedicated to the public domain.
+The `planet.rb` scripts are dedicated to the public domain.
 Use it as you please with no restrictions whatsoever.
 
 ## Questions? Comments?

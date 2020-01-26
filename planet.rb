@@ -1,12 +1,38 @@
 # encoding: utf-8
 
 
-module JekyllPlanet
+$RUBYLIBS_DEBUG = true     ## turn on debugging messages for pluto & friends libs
 
-class Tool
 
-  def initialize()
+# 3rd party ruby gems/libs
+require 'pluto/models'
+
+
+
+class Planet
+
+  MAJOR = 1
+  MINOR = 0
+  PATCH = 0
+  VERSION = [MAJOR,MINOR,PATCH].join('.')
+
+  def self.version
+    VERSION
+  end
+
+  def self.banner
+    ### todo: add RUBY_PATCHLEVEL or RUBY_PATCH_LEVEL  e.g. -p124 - why? why not?
+    "planet.rb/#{VERSION} on Ruby #{RUBY_VERSION} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
+  end
+
+  
+
+
+  def initialize
+    puts self.class.banner     ##  print banner / say hello
+
     puts "db settings:"
+
     @db_config = {
       adapter: 'sqlite3',
       database: './planet.db'
@@ -19,7 +45,7 @@ class Tool
   def run( args )
     unless File.exists?( @db_config[:database])
       puts "** error: database #{@db_config[:database]} missing; please check pluto documention for importing feeds etc."
-      exit 1;
+      exit 1
     end
 
     Pluto.connect( @db_config )
@@ -38,12 +64,12 @@ class Tool
 
     FileUtils.mkdir_p( posts_root )  ## make sure path exists
 
-    ## Note:
-    ## Jekyll pattern for blogs must follow
-    ##  2014-12-21-  e.g. must include trailing dash (-)
+    ## note:
+    ##  jekyll pattern for blogs must follow
+    ##    2020-12-21-  e.g. must include trailing dash (-)
     fn = "#{posts_root}/#{item.published.strftime('%Y-%m-%d')}-#{title_to_key(item.title)}.html"
 
-    frontmatter =<<EOS
+    frontmatter =<<TXT
 ---
 title:      "#{item.title.gsub("\"","\\\"")}"
 created_at: #{item.published}
@@ -51,10 +77,10 @@ author:     #{item.feed.title}
 layout:     post
 original_link: "#{item.url unless item.url.empty?}"
 ---
-EOS
+TXT
 
 
-    File.open( fn, 'w' ) do |f|
+    File.open( fn, 'w:utf-8' ) do |f|
       f.write frontmatter
 
       if item.content
@@ -88,6 +114,14 @@ def title_to_key( title )
   key
 end
 
-end  ## class Tool
-end ## module JekyllPlanet
+end  ## class Planet
+
+
+
+
+##############################
+#  main entry - let's run
+
+Planet.new.run( ARGV )      if __FILE__ == $0
+
 

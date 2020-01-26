@@ -19,7 +19,8 @@ doc/
 
 
 #############
-# exclude *.dbs for testing
+# exclude *.dbs and posts for testing
 
 planet.db
+_posts/
 
