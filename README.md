@@ -126,6 +126,8 @@ This will
 
 2) generate a blog story for every entry in `_posts/`
 
+Resulting in:
+
 ```
 planet.rb/1.0.0 on Ruby 2.3.3
 db settings:
@@ -145,6 +147,23 @@ db settings:
 ...
 ```
 
+And if you check the `_posts/` folder now listing:
+
+```
+_posts/
+   2019-12-18-rails_5241_has_been_released.html
+   2019-12-21-ruby_270-rc2_released.html
+   2019-12-25-ruby_270_released.html
+   2019-12-27-ruby_270_rails_6021_and_more.html
+   2020-01-02-birmingham_on_rails_birmingham_alabama_united_states.html
+   2020-01-05-this_week_in_rails_-_the_2019_edition.html
+   2020-01-11-this_week_in_rails_-_deprecations_bugfixes_and_improvements.html
+   2020-01-16-rails_camp_west_diablo_lake_washington_united_states.html
+   2020-01-16-rubyconf_belarus_by_minsk_belarus_-_ruby_conferences_n_camps_update.html
+   2020-01-19-this_week_in_rails_-_rack_21_released_disallowed_deprecations_and_more.html
+   ...
+```
+
 For example
 the feed entry "Ruby 2.7.0 Released":
 
@@ -162,7 +181,6 @@ most notably:</p>
 </ul>
 ...
 ```
-
 
 becomes `_posts/2019-12-25-ruby_270_released.html`:
 
