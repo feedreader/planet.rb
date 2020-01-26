@@ -113,7 +113,7 @@ See the [Planet Pluto docs for more »](http://feedreader.github.io).
 
 ### Step 2: Generate Planet Posts for Your Static (Jekyll & Friends) Website 
 
-Use planet.rb script to generate the blog posts for your static (jekyll & friends) website. Example:
+Use the planet.rb script to generate the blog posts for your static (jekyll & friends) website. Example:
 
 ```
 $ ruby ./planet.rb
@@ -215,7 +215,7 @@ Add Your Setup Here!
 
 ## Alternatives
 
-`planet.rb` by Pablo Astigarraga [(Site)](https://github.com/pote/planet.rb) - used with jekyll/octopress website builder
+`planet.rb` by Pablo Astigarraga [(Source)](https://github.com/pote/planet.rb) - used with jekyll/octopress website builder
 
 
 
