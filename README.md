@@ -74,7 +74,6 @@ pluto/1.3.2 on Ruby 2.3.3
 [info] ** NEW | CVE-2019-16201: Regular Expression Denial of Service vulnerability of WEBrick's Digest...
 [info] ** NEW | Ruby 2.6.5 Released
 [info] OK - fetching feed 'rubyconf' - HTTP status 200 OK
-[info] Before parsing feed >rubyconf<...
 [info] ** NEW | Rails Camp West @ Diablo Lake, Washington, United States - Ruby Conferences 'n' Camps Update
 [info] ** NEW | RubyConf Belarus (BY) @ Minsk, Belarus - Ruby Conferences 'n' Camps Update
 [info] ** NEW | Birmingham on Rails @ Birmingham, Alabama, United States - Ruby Conferences 'n' Camps Update
