@@ -215,8 +215,10 @@ as usual to build your website. Example:
 $ jekyll build
 ```
 
-That's it.
+See the sample live version @ [**`feedreader.github.io/jekyll.planet.sample`**](http://feedreader.github.io/jekyll.planet.sample/) 
+[(Source)](https://github.com/feedreader/jekyll.planet.sample).
 
+That's it.
 
 
 
