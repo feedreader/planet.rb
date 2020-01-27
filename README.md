@@ -230,12 +230,6 @@ Add Your Setup Here!
 
 
 
-## Alternatives
-
-`planet.rb` by Pablo Astigarraga [(Source)](https://github.com/pote/planet.rb) - used with jekyll/octopress website builder
-
-
-
 ## License
 
 The `planet.rb` scripts are dedicated to the public domain.
