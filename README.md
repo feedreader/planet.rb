@@ -1,4 +1,4 @@
-# planet.rb quick starter script - add articles, blogs to your static (jekyll & friends) website via feeds (and planet pluto)
+# planet.rb quick starter script - (auto-)add articles & blog posts to your static (jekyll & friends) website via feeds (and planet pluto)
 
 
 * home  :: [github.com/feedreader/planet.rb](https://github.com/feedreader/planet.rb)
