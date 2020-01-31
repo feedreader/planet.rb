@@ -105,7 +105,7 @@ pluto/1.3.2 on Ruby 2.3.3
 Done.
 ```
 
-See the [Planet Pluto docs for more »](http://feedreader.github.io).
+See the [Planet Pluto documentation for more »](http://feedreader.github.io).
 
 
 
