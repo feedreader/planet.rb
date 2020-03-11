@@ -1,3 +1,7 @@
+###
+#  to run use
+#     ruby ./planet.rb
+
 require 'pluto/models'     ## see https://rubygems.org/gems/pluto-models
 
 
