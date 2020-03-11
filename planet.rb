@@ -1,4 +1,4 @@
-require 'newscast'         ## see https://rubygems.org/gems/newscast
+require 'pluto/models'     ## see https://rubygems.org/gems/pluto-models
 
 
 class Planet
