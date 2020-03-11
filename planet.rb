@@ -65,14 +65,14 @@ private
       elsif item.summary
         f.write item.summary
       else
-        ## warn: not content found for feed
+        ## warn: no content found for feed
       end
     end
   end
 
   def title_to_key( title )
     key = title.downcase
-    key = key.gsub( /[^a-z0-9\- ]/, '' )  ## for now remove all chars except a-z and 0-9
+    key = key.gsub( /[^a-z0-9 -]/, '' )  ## for now remove all chars except a-z, 0-9, space and dash (-)
     key = key.strip
     key = key.gsub( /[ ]+/, '_' )
   
