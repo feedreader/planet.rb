@@ -1,33 +1,15 @@
-# encoding: utf-8
-
-
-$RUBYLIBS_DEBUG = true     ## turn on debugging messages for pluto & friends libs
-
-
-# 3rd party ruby gems/libs
-require 'pluto/models'
-
+require 'newscast'         ## see https://rubygems.org/gems/newscast
 
 
 class Planet
 
-  MAJOR = 1
-  MINOR = 0
-  PATCH = 0
-  VERSION = [MAJOR,MINOR,PATCH].join('.')
-
-  def self.version
-    VERSION
-  end
+  VERSION = '1.0.0'
 
   def self.banner
-    ### todo: add RUBY_PATCHLEVEL or RUBY_PATCH_LEVEL  e.g. -p124 - why? why not?
     "planet.rb/#{VERSION} on Ruby #{RUBY_VERSION} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
   end
 
   
-
-
   def initialize
     puts self.class.banner     ##  print banner / say hello
 
@@ -42,12 +24,7 @@ class Planet
   end
 
 
-  def run( args )
-    unless File.exists?( @db_config[:database])
-      puts "** error: database #{@db_config[:database]} missing; please check pluto documention for importing feeds etc."
-      exit 1
-    end
-
+  def run
     Pluto.connect( @db_config )
 
     Pluto::Model::Item.latest.limit(10).each_with_index do |item,i|
@@ -57,7 +34,7 @@ class Planet
     end
   end
 
-
+private
   def generate_blog_post( item )
 
     posts_root = "./_posts"
@@ -69,19 +46,19 @@ class Planet
     ##    2020-12-21-  e.g. must include trailing dash (-)
     fn = "#{posts_root}/#{item.published.strftime('%Y-%m-%d')}-#{title_to_key(item.title)}.html"
 
-    frontmatter =<<TXT
----
-title:      "#{item.title.gsub("\"","\\\"")}"
-created_at: #{item.published}
-author:     #{item.feed.title}
-layout:     post
-original_link: "#{item.url unless item.url.empty?}"
----
-TXT
+    frontmatter = {
+      'title'      => item.title,
+      'created_at' => item.published,
+      'author'     => item.feed.title,
+      'layout'     => 'post'
+    }
+
+    frontmatter['original_link'] = item.url    unless item.url.empty?
 
 
     File.open( fn, 'w:utf-8' ) do |f|
-      f.write frontmatter
+      f.write frontmatter.to_yaml   # note: to_vaml starts yaml "document" with ---
+      f.write "---\n\n"
 
       if item.content
         f.write item.content
@@ -93,35 +70,23 @@ TXT
     end
   end
 
-
-private
-
-def title_to_key( title )
+  def title_to_key( title )
+    key = title.downcase
+    key = key.gsub( /[^a-z0-9\- ]/, '' )  ## for now remove all chars except a-z and 0-9
+    key = key.strip
+    key = key.gsub( /[ ]+/, '_' )
   
-  ### fix: use textutils.title_to_key ??
-  key = title.downcase
-  key = key.gsub( 'ü', 'ue' )
-  key = key.gsub( 'é', 'e' )
+    ## note: might result in null string (use hash)
+    key = "post#{Digest::MD5.hexdigest( title )}"   if key.empty?
 
-  key = key.gsub( /[^a-z0-9\- ]/, '' )  ## for now remove all chars except a-z and 0-9
-  key = key.strip
-  key = key.gsub( /[ ]+/, '_' )
-
-  if key.blank?   ## note: might result in null string (use timestamp)
-    key = "post#{Time.now.strftime('%Y%m%d%H%M%S%L')}"
+    key
   end
-
-  key
-end
-
+  
 end  ## class Planet
-
 
 
 
 ##############################
 #  main entry - let's run
 
-Planet.new.run( ARGV )      if __FILE__ == $0
-
-
+Planet.new.run      if __FILE__ == $0
